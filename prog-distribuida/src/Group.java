@@ -8,10 +8,10 @@ public class Group implements Serializable {
     private List<Member> members = new ArrayList<>();
     private List<Message> messages = new ArrayList<>();
 
-    public Group(String name, int id, int membersNumber) {
+    public Group(String name, int id, Member creator) {
         this.name = name;
         this.id = id;
-        this.membersNumber = membersNumber;
+        this.members.add(creator);
     }
 
     public String getName() {

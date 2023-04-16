@@ -19,8 +19,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public int createGroup(String name, int idMember) throws RemoteException {
-        Group temp = new Group(name, groups.size()+1, idMember);
+    public int createGroup(String name, Member creator) throws RemoteException {
+        Group temp = new Group(name, groups.size()+1, creator);
         groups.add(temp);
 		System.out.println("Novo grupo registrado com sucesso! Total: "+groups.size());
         System.out.println("Nome do grupo: "+name);

@@ -24,9 +24,11 @@ public class GUI implements Serializable {
                     System.out.println("Insira o nome do grupo: ");
                     nameGroup=sc.next();
 
-                    server.createGroup(nameGroup, idMember);
+                    System.out.println("Insira seu apelido no grupo: ");
+                    String memberNickname=sc.next();
 
-                    System.out.println("Grupo criado!");
+                    server.createGroup(nameGroup, new Member(memberNickname, idMember));
+
                     System.out.println("Grupo criado por "+idMember+"!");
                     System.out.println("\t---------------------------------------------------");
                         
