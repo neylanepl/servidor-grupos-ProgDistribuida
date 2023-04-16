@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Group implements Serializable {
     private String name;
-    private int id, membersNumber = 1;
+    private int id;
     private List<Member> members = new ArrayList<>();
     private List<Message> messages = new ArrayList<>();
 
@@ -31,10 +31,17 @@ public class Group implements Serializable {
     }
 
     public int getMembersNumber() {
-        return this.membersNumber;
+        return members.size();
     }
 
-    public void setMembersNumber(int membersNumber) {
-        this.membersNumber = membersNumber;
+    public boolean addMember(Member member) {
+        if(!members.contains(member)) {
+            return members.add(member);
+        }
+        return false;
+    }
+
+    public boolean removeMember(int idMember) {
+        return members.removeIf(member -> member.getId() == idMember);
     }
 }
