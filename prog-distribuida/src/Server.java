@@ -1,22 +1,30 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Server extends UnicastRemoteObject implements ServerInterface {
+    private volatile List<ClientInterface> clients = new ArrayList<ClientInterface>();
+    private volatile List<Group> groups = new ArrayList<Group>();
+    
     protected Server() throws RemoteException {
         super();
-        //TODO Auto-generated constructor stub
     }
 
     @Override
-    public void registerClient(ClientInterface client) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registerClient'");
+    public int registerClient(ClientInterface client) throws RemoteException {
+        clients.add(client);
+		System.out.println("Novo cliente registrado com sucesso! Total: "+clients.size());
+        return clients.indexOf(client);
     }
 
     @Override
-    public int createGroup(int idGroup, int idMember) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createGroup'");
+    public int createGroup(String name, int idMember) throws RemoteException {
+        Group temp = new Group(name, groups.size()+1, idMember);
+        groups.add(temp);
+		System.out.println("Novo grupo registrado com sucesso! Total: "+groups.size());
+        System.out.println("Nome do grupo: "+name);
+        return groups.size();
     }
 
     @Override

@@ -4,7 +4,6 @@ import java.rmi.server.UnicastRemoteObject;
 public class Client extends UnicastRemoteObject implements ClientInterface {
     protected Client() throws RemoteException {
         super();
-        //TODO Auto-generated constructor stub
     }
 
     @Override
