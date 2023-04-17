@@ -7,7 +7,7 @@ public class GUI implements Serializable {
 
     public static void principalMenu(ServerInterface server, int idClient) throws RemoteException {
         int idGroup = 0, idMember = idClient;
-        String nameGroup, memberNickname;
+        String nameGroup, memberNickname, text;
         boolean menu = true;
         while (menu) {
             System.out.println("Escolha uma das opções.");
@@ -65,10 +65,11 @@ public class GUI implements Serializable {
                     System.out.printf("Insira o ID do grupo: ");
                     idGroup=sc.nextInt();
 
-                    System.out.printf("Insira o ID do membro: ");
-                    idMember=sc.nextInt();
+                    System.out.printf("Digite uma mensagem: ");
+                    text = sc.next();
 
-                    server.sendMessage(idGroup, idMember);
+
+                    server.sendMessage(idGroup, idMember, text);
 
                     System.out.println("Mensagem enviada!");
                     System.out.println("\t---------------------------------------------------");

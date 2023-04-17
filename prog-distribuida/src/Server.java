@@ -51,8 +51,16 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public int sendMessage(int idGroup, int idMember) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sendMessage'");
+    public boolean sendMessage(int idGroup, int idMember, String text) throws RemoteException {
+        Group group = groups.get(idGroup);
+        Member member = group.getMemberById(idMember);
+        if(group != null) {
+            if(member != null) {
+                group.addMessage(new Message(text, member, idGroup));
+                System.out.println("Mensagem enviada com sucesso! Total: "+group.getMessagesNumber());
+                return true;
+            }
+        }
+        return false;
     }
 }

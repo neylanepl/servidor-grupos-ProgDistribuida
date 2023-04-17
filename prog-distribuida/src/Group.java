@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Group implements Serializable {
     private String name;
@@ -43,5 +44,28 @@ public class Group implements Serializable {
 
     public boolean removeMember(int idMember) {
         return members.removeIf(member -> member.getId() == idMember);
+    }
+
+    public boolean isMember(int idMember) {
+        Predicate<Member> pred = member -> member.getId() == idMember;
+        boolean isMember = members.stream().anyMatch(pred);
+        return isMember ? true : false;
+    }
+
+    public Member getMemberById(int idMember) {
+        for(Member member : members) {
+            if (member.getId() == idMember) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public boolean addMessage(Message message) {
+        return messages.add(message);
+    }
+    
+    public int getMessagesNumber() {
+        return messages.size();
     }
 }

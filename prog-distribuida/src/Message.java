@@ -11,6 +11,15 @@ public class Message implements Serializable {
 		this.text = text;
 		this.date = new Date();
 	}
+
+
+	public Message(String text, Member member, int idGroup) {
+		this.text = text;
+		this.date = new Date();
+		this.member = member;
+		this.idGroup = idGroup;
+	}
+
 	
 	public String getMessage() {
 		return text;
