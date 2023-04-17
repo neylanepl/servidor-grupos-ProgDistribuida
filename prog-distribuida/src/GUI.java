@@ -15,7 +15,8 @@ public class GUI implements Serializable {
                     + "2. Entrar em um grupo\n"
                     + "3. Sair de um grupo\n"
                     + "4. Enviar mensagem a um grupo \n"
-                    + "5. Sair");
+                    + "5. Ler mensagens de um grupo \n"
+                    + "6. Sair");
             System.out.println("Digite a opção:");
 
             switch (sc.nextInt()) {
@@ -27,9 +28,9 @@ public class GUI implements Serializable {
                     System.out.println("Insira seu apelido no grupo: ");
                     memberNickname=sc.next();
 
-                    server.createGroup(nameGroup, new Member(memberNickname, idMember));
+                    int idGroupCreated = server.createGroup(nameGroup, new Member(memberNickname, idMember));
 
-                    System.out.println("Grupo criado por "+idMember+"!");
+                    System.out.println("O identificador do grupo criado: "+idGroupCreated+".\nGuarde essa informação!");
                     System.out.println("\t---------------------------------------------------");
                         
                     break;
@@ -76,6 +77,16 @@ public class GUI implements Serializable {
                     break;
 
                 case 5:
+                    System.out.println("\t_______________LER MENSAGENS_______________");
+                    System.out.printf("Insira o ID do grupo: ");
+                    idGroup=sc.nextInt();
+
+                    server.distributeMessages(idGroup, idMember);
+
+                    System.out.println("\t---------------------------------------------------");
+                    break;
+
+                case 6:
                     System.out.println("Saindo... ");
                     menu = false;
                     break;

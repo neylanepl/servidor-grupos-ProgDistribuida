@@ -1,5 +1,6 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 public class Client extends UnicastRemoteObject implements ClientInterface {
     protected Client() throws RemoteException {
@@ -7,14 +8,9 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
     }
 
     @Override
-    public int sendMessageToGroup(int idGroup, int idMember, Message message) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sendMessageToGroup'");
-    }
-
-    @Override
-    public byte[] receiveMessage(int idGroup) throws RemoteException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'receiveMessage'");
+    public void sendMessageToGroup(List<Message> messages) throws RemoteException {
+        for(Message message : messages) {
+            System.out.println(message.toString());
+        }
     }
 }

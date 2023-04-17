@@ -64,6 +64,10 @@ public class Group implements Serializable {
     public boolean addMessage(Message message) {
         return messages.add(message);
     }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
     
     public int getMessagesNumber() {
         return messages.size();

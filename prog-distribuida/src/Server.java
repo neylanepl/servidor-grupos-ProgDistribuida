@@ -62,5 +62,28 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
             }
         }
         return false;
+    }    
+
+    private class NotifyMessage extends Thread {
+        public void run(int idGroup, int idMember) throws RemoteException {			
+			Group group = groups.get(idGroup);
+            Member member = group.getMemberById(idMember);
+            if(group != null) {
+                if(member != null) {
+                    clients.get(idMember).sendMessageToGroup(group.getMessages());
+                }
+            }			
+            try {
+                Thread.sleep(15 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }	
+		}
     }
+
+    @Override
+    public void distributeMessages(int idGroup, int idMember) throws RemoteException {
+        new NotifyMessage().run(idGroup, idMember);
+        System.out.println("Mensagens em distribuição!");
+    }    
 }
