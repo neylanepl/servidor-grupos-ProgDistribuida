@@ -24,7 +24,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
         groups.add(temp);
 		System.out.println("Novo grupo registrado com sucesso! Total: "+groups.size());
         System.out.println("Nome do grupo: "+name);
-        return groups.size();
+        return temp.getId();
     }
 
     @Override
