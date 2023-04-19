@@ -21,12 +21,13 @@ public class GUI implements Serializable {
 
             switch (sc.nextInt()) {
                 case 1:
+                    nameGroup=sc.nextLine();
                     System.out.println("\t_______________CRIAR GRUPO_______________");
                     System.out.println("Insira o nome do grupo: ");
-                    nameGroup=sc.next();
+                    nameGroup=sc.nextLine();
 
                     System.out.println("Insira seu apelido no grupo: ");
-                    memberNickname=sc.next();
+                    memberNickname=sc.nextLine();
 
                     int idGroupCreated = server.createGroup(nameGroup, new Member(memberNickname, idMember));
 
@@ -65,9 +66,10 @@ public class GUI implements Serializable {
                     System.out.println("\t_______________ENVIAR MENSAGEM_______________");
                     System.out.printf("Insira o ID do grupo: ");
                     idGroup=sc.nextInt();
+                    text = sc.nextLine();
 
                     System.out.printf("Digite uma mensagem: ");
-                    text = sc.next();
+                    text = sc.nextLine();
 
 
                     server.sendMessage(idGroup, idMember, text);
