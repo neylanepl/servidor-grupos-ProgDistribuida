@@ -52,6 +52,6 @@ public class Message implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Message [text=" + text + ", date=" + date + "]";
+		return  date + " " + member.getName() + ": " + text;
 	}	
 }
