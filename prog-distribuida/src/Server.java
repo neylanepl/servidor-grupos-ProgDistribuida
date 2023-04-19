@@ -31,10 +31,12 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     public boolean addMember(int idGroup, Member member) throws RemoteException {
         Group group = groups.get(idGroup);
         if(group != null) {
-            group.addMember(member);
-            System.out.println("Novo membro adicionado com sucesso! Total: "+group.getMembersNumber());
-            System.out.println("Novo membro: "+member.getName());
-            return true;
+            if(!group.isMember(member.getId())) {
+                group.addMember(member);
+                System.out.println("Novo membro adicionado com sucesso! Total: "+group.getMembersNumber());
+                System.out.println("Novo membro: "+member.getName());
+                return true;
+            }
         }
         return false;
     }
@@ -65,25 +67,26 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
     }    
 
     private class NotifyMessage extends Thread {
-        public void run(int idGroup, int idMember) throws RemoteException {			
-			Group group = groups.get(idGroup);
-            Member member = group.getMemberById(idMember);
-            if(group != null) {
-                if(member != null) {
-                    clients.get(idMember).sendMessageToGroup(group.getMessages());
-                }
-            }			
-            try {
-                Thread.sleep(15 * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }	
+        public void run(Group group, int idMember) throws RemoteException, InterruptedException {								
+            clients.get(idMember).sendMessageToGroup(group.getMessages());	
 		}
     }
 
     @Override
-    public void distributeMessages(int idGroup, int idMember) throws RemoteException {
-        new NotifyMessage().run(idGroup, idMember);
-        System.out.println("Mensagens em distribuição!");
+    public boolean distributeMessages(int idGroup, int idMember) throws RemoteException {
+        Group group = groups.get(idGroup);
+        Member member = group.getMemberById(idMember);
+        if(group != null) {
+            if(member != null) {
+                try {
+                    new NotifyMessage().run(group, idMember);
+                    System.out.println("Mensagens em distribuição!");     
+                    return true;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }           
+            }
+        }
+        return false;
     }    
 }

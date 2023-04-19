@@ -44,9 +44,10 @@ public class GUI implements Serializable {
                     System.out.printf("Insira seu apelido no grupo: ");
                     memberNickname=sc.next();
 
-                    server.addMember(idGroup, new Member(memberNickname, idMember));
+                    boolean memberAdded = server.addMember(idGroup, new Member(memberNickname, idMember));
 
-                    System.out.println("Entrou no grupo!");
+                    if (memberAdded) System.out.println("Entrou no grupo!");
+                    else System.out.println("Não foi possível entrar no grupo. Talvez já faça parte!");
                     System.out.println("\t---------------------------------------------------");
                     break;
 
@@ -72,9 +73,9 @@ public class GUI implements Serializable {
                     text = sc.nextLine();
 
 
-                    server.sendMessage(idGroup, idMember, text);
-
-                    System.out.println("Mensagem enviada!");
+                    boolean messageSent = server.sendMessage(idGroup, idMember, text);
+                    if (messageSent) System.out.println("Mensagem enviada!");
+                    else System.out.println("Pelo visto você não é um membro desse grupo!");
                     System.out.println("\t---------------------------------------------------");
                     break;
 
@@ -83,8 +84,8 @@ public class GUI implements Serializable {
                     System.out.printf("Insira o ID do grupo: ");
                     idGroup=sc.nextInt();
 
-                    server.distributeMessages(idGroup, idMember);
-
+                    boolean isAble = server.distributeMessages(idGroup, idMember);
+                    if(!isAble) System.out.println("Pelo visto você não é um membro desse grupo!");
                     System.out.println("\t---------------------------------------------------");
                     break;
 

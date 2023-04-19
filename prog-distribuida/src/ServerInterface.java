@@ -7,5 +7,5 @@ public interface ServerInterface extends Remote {
     public boolean addMember(int idGroup, Member member) throws RemoteException;    
     public boolean removeMember(int idGroup, int idMember) throws RemoteException;
     public boolean sendMessage(int idGroup, int idMember, String text) throws RemoteException;
-    public void distributeMessages(int idGroup, int idMember) throws RemoteException;
+    public boolean distributeMessages(int idGroup, int idMember) throws RemoteException;
 }
