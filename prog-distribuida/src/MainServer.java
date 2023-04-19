@@ -8,7 +8,7 @@ public class MainServer {
 		System.setProperty("java.rmi.server.hostname","127.0.0.1");		
 		ServerInterface server = new Server();
 		LocateRegistry.createRegistry(1098);		
-		Naming.rebind("rmi://127.0.0.1:1098/ServerCallbak", server);		
-		System.out.println("RMI Callback Server Starterd.");		
+		Naming.rebind("rmi://127.0.0.1:1098/ServerGroups", server);		
+		System.out.println("ServerGroups Starterd.");		
 	}
 }

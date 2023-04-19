@@ -40,9 +40,10 @@ public class GUI implements Serializable {
                     System.out.println("\t_______________ENTRAR EM UM GRUPO_______________");
                     System.out.printf("Insira o ID do grupo: ");
                     idGroup=sc.nextInt();
+                    memberNickname=sc.nextLine();
 
                     System.out.printf("Insira seu apelido no grupo: ");
-                    memberNickname=sc.next();
+                    memberNickname=sc.nextLine();
 
                     boolean memberAdded = server.addMember(idGroup, new Member(memberNickname, idMember));
 
