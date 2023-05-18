@@ -1,11 +1,16 @@
-import java.io.Serializable;
+package distribuida.imd.groupserver.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Group implements Serializable {
-    private String name;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+// @Table(name = "Group")
+public class Group {
     private int id;
+    private String name;
     private List<Member> members = new ArrayList<>();
     private List<Message> messages = new ArrayList<>();
 

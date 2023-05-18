@@ -1,3 +1,5 @@
+package distribuida.imd.groupserver.model;
+
 import java.io.Serializable;
 
 public class Member implements Serializable {
