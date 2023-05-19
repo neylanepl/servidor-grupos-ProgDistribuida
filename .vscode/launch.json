@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-GroupserverApplication<groupserver>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "distribuida.imd.groupserver.GroupserverApplication",
+            "projectName": "groupserver",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
