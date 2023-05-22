@@ -57,15 +57,31 @@ public class GroupRepository {
         return isRemoved;
     }
 
-    public void addMessage(Message message, int idGroup) {
-        messages.put(message, idGroup);
+    private boolean isMember(int idGroup, Member memberReceived) {
+        for (Map.Entry<Member, List<Integer>> member : members.entrySet()) {
+            if (member.getKey().equals(memberReceived)  && member.getValue().contains(idGroup)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public List<Message> getMessages(int idGroup) {
+    public boolean addMessage(Message message, int idGroup, Member member) {
+        if(isMember(idGroup, member)) {
+            messages.put(message, idGroup);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Message> getMessages(int idGroup, Member member) {
         List<Message> messagesByGroup = new ArrayList<>();
-        for (Map.Entry<Message, Integer> message : messages.entrySet()) {
-            if (message.getValue() == idGroup) {
-                messagesByGroup.add(message.getKey());
+        System.out.println("é membro " + member.toString());
+        if(isMember(idGroup, member)) {
+            for (Map.Entry<Message, Integer> message : messages.entrySet()) {
+                if (message.getValue().equals(idGroup)) {
+                    messagesByGroup.add(message.getKey());
+                }
             }
         }
         return messagesByGroup;

@@ -25,25 +25,27 @@ public class GroupService {
     }
 
     public String addMember(int idGroup, Member member) {
-        String message = "Enter in group with sucess!";
+        String response = "Enter in group with sucess!";
         if (groupRepository.addMember(member, idGroup) == false) 
-            message = "Try again! Has some problem...";
-        return message;
+            response = "Try again! Has some problem...";
+        return response;
     }
 
     public String removeMember(int idGroup, Member member) {
-        String message = "Leave group with sucess!";
+        String response = "Leave group with sucess!";
         if (groupRepository.removeMember(member, idGroup) == false) 
-            message = "Try again! Has some problem...";
-        return message;
+            response = "Try again! Has some problem...";
+        return response;
     }
 
     public String addMessage(int idGroup, Message message) {
-        groupRepository.addMessage(message, idGroup);
-        return "Send message with sucess!";
+        String response = "Send message with sucess!";
+        if (groupRepository.addMessage(message, idGroup, message.getMember()) == false)
+            response = "Try again! Has some problem...";
+        return response;
     }
 
-    public List<Message> getMessages(int idGroup) {
-        return groupRepository.getMessages(idGroup);
+    public List<Message> getMessages(int idGroup, Member member) {
+        return groupRepository.getMessages(idGroup, member);
     }
 }

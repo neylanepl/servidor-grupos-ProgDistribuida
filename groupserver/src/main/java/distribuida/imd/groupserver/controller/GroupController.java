@@ -48,7 +48,7 @@ public class GroupController {
     }
 
     @GetMapping("readmessages/{idGroup}")
-    public List<Message> readMessages(@PathVariable int idGroup) {
-        return groupService.getMessages(idGroup);
+    public List<Message> readMessages(@PathVariable int idGroup, @RequestBody Member member) {
+        return groupService.getMessages(idGroup, member);
     }
 }
