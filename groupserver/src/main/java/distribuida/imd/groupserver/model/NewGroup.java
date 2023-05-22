@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Message {	
-	private String text;
-	private String date;
-	private Member member;
+public class NewGroup {
+    private String name;
+    private Member creator;
 }
