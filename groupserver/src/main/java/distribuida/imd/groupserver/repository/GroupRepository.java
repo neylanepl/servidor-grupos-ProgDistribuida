@@ -76,7 +76,6 @@ public class GroupRepository {
 
     public List<Message> getMessages(int idGroup, Member member) {
         List<Message> messagesByGroup = new ArrayList<>();
-        System.out.println("é membro " + member.toString());
         if(isMember(idGroup, member)) {
             for (Map.Entry<Message, Integer> message : messages.entrySet()) {
                 if (message.getValue().equals(idGroup)) {
